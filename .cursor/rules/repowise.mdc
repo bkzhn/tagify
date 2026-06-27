@@ -1,0 +1,22 @@
+---
+description: >-
+  MANDATORY Repowise MCP (user-repowise) before Grep/Read for this codebase:
+  where is code, how does it work, why, architecture, event flow, handlers,
+  click handlers, callers, callees, dependencies, modules, refactor, blast
+  radius, safe to edit, what to touch, symbol lookup, navigation.
+globs: src/**/*,test/**/*,tests/**/*,docs/examples/**/*,gulpfile.js,package.json,index.html,.cursor/plans/**/*
+alwaysApply: false
+---
+
+# Repowise — first tool for repo questions
+
+Repo-related prompt → **first tool call must be `user-repowise`** (before Grep, SemanticSearch, Read).
+
+1. `get_answer(question)` — how/where/why
+2. `search_codebase(query)` — find symbol or concept
+3. `get_symbol` / `get_context` — follow up from (1) or (2)
+4. `get_risk(targets)` — before editing files
+
+**Grep/Read without Repowise:** only exact known identifier you already have (e.g. `classNames.tagX`).
+
+**Fallback (do not stall):** `confidence=low`, empty answer, or `stale_warning` → Grep/Read immediately.
