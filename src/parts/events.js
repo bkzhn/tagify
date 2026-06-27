@@ -158,7 +158,7 @@ export default {
             var _s = this.settings,
                 nodeTag = isWithinNodeTag.call(this, e.relatedTarget),
                 targetIsTagNode = isNodeTag.call(this, e.target),
-                isTargetXBtn = e.target.classList.contains(_s.classNames.tagX),
+                isTargetXBtn = e.target.matches(_s.classNames.tagXSelector),
                 isFocused = e.type == 'focusin',
                 lostFocus = e.type == 'focusout';
 
@@ -311,7 +311,7 @@ export default {
 
             nextTag = focusedElm.nextElementSibling;
 
-            var targetIsRemoveBtn = e.target.classList.contains(_s.classNames.tagX);
+            var targetIsRemoveBtn = e.target.matches(_s.classNames.tagXSelector);
 
             switch( e.key ){
                 // remove tag if has focus
@@ -798,7 +798,7 @@ export default {
                 isScope = e.target === this.DOM.scope,
                 timeDiffFocus = +new Date() - this.state.hasFocus;
 
-            if( e.target.classList.contains(_s.classNames.tagX) ){
+            if( e.target.matches(_s.classNames.tagXSelector) ){
                 this.removeTags( e.target.parentNode )
                 return
             }
