@@ -160,14 +160,6 @@ function jquery(){
         .pipe(gulp.dest('./dist/'))
 }
 
-function polyfills(done){
-    return bundle({
-        entry: 'src/tagify.polyfills.js',
-        outputName: 'tagify.polyfills.min.js'
-    })
-        .on('end', done)
-}
-
 function bundle({ entry, outputName, dest, plugins=[], format='umd' }){
     plugins = [
         rollupSwc(swcOptions),
@@ -319,7 +311,7 @@ function watch(){
 }
 
 // remove the "react" task as it was unneeded because the react-wrapper is served unbundled
-const build = gulp.series(gulp.parallel(js, scss, polyfills), esm, compileAllExamples, compileHomepage) // deprecated the "react" task as i believe it's not needed to consume a pre-bundled version.
+const build = gulp.series(gulp.parallel(js, scss), esm, compileAllExamples, compileHomepage) // deprecated the "react" task as i believe it's not needed to consume a pre-bundled version.
 
 exports.default = gulp.parallel(build, watch, watchExamples, watchHomepage)
 exports.js = js

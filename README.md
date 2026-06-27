@@ -195,7 +195,6 @@ Filename                             | Info
 ------------------------------------ | -----------------------------------------------------------
 `tagify.esm.js`                      | ESM version. [see jsbin demo](https://jsbin.com/sulijap/edit?html,output)
 `tagify.js`                          | *minified* UMD version, including its sourcemaps. This is the **main** file the package exports.
-`tagify.polyfills.min.js`            | Legacy bundle; **not required** — Internet Explorer is no longer supported
 `react.tagify.js`                    | Wrapper-only for React. [Read more](#react)
 <del>`jQuery.tagify.min.js`</del>    | jQuery wrapper - same as `tagify.js`. Might be removed in the future. **(Deprecated as of APR 24')**
 `tagify.css`                         |
