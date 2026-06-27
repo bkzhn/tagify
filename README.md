@@ -581,8 +581,8 @@ Similar to native `<Select>` element, but allows typing text as value.
 See [**live demo**](https://codesandbox.io/s/tagify-react-wrapper-oempc) for React integration examples.
 ⚠️ Tagify is **not** a [controlled component](https://github.com/yairEO/tagify/issues/489#issuecomment-629316093).
 
-A none-minified and raw source-code Tagify React component is exported from [`react.tagify.jsx`](https://github.com/yairEO/tagify/blob/master/src/react.tagify.jsx) and you can import it as seen in the below code example.
-This React port will only work if your bundler can handle raw source-code in ES2015+ which is better for tree-shaking.
+A none-minified and raw source-code Tagify React component is exported from [`react.tagify.js`](https://github.com/yairEO/tagify/blob/master/src/react.tagify.js) and you can import it as seen in the below code example.
+The wrapper is shipped as dependency-light, JSX-free ES module source, so any bundler can consume it directly &mdash; no custom JSX/Babel loader or `node_modules` transpilation is required. Shipping raw source is also better for tree-shaking.
 
 ---
 ### Update regarding `onChange` prop:

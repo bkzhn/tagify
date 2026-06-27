@@ -1,8 +1,7 @@
 'use client';
 
-import {memo, useMemo, useEffect, useRef, useCallback} from 'react';
-import {renderToStaticMarkup} from './react-compat-layer'
-// import {renderToStaticMarkup} from "react-dom/server"
+import {memo, useMemo, useEffect, useRef, useCallback, createElement} from 'react';
+import {renderToStaticMarkup} from "react-dom/server"
 // import {string, array, func, bool, object, oneOfType} from "prop-types"
 import Tagify from "./tagify.js"
 
@@ -20,7 +19,7 @@ function templatesToString(templates) {
             let Template = templates[templateName]
             let isReactComp = String(Template).includes("jsxRuntime")
             if (isReactComp)
-                templates[templateName] = (...props) => renderToStaticMarkup(<Template props={props} />)
+                templates[templateName] = (...props) => renderToStaticMarkup(createElement(Template, { props }))
         }
     }
 }
@@ -232,12 +231,12 @@ const TagifyWrapper = ({
         mountedRef.current = true
     }, [])
 
-    return (
-        // a wrapper must be used because Tagify will appened inside it it's component,
-        // keeping the virtual-DOM out of the way
-        <div className="tags-input">
-            <InputMode {...inputAttrs} />
-        </div>
+    // a wrapper must be used because Tagify will appened inside it it's component,
+    // keeping the virtual-DOM out of the way
+    return createElement(
+        'div',
+        { className: "tags-input" },
+        createElement(InputMode, inputAttrs)
     )
 }
 
@@ -285,6 +284,6 @@ Tags.displayName = "Tags"
 
 
 export const MixedTags = ({ children, ...rest }) =>
-  <Tags InputMode="textarea" {...rest}>{children}</Tags>
+  createElement(Tags, { InputMode: "textarea", ...rest }, children)
 
 export default Tags
